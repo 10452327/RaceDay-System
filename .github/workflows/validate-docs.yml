@@ -1,0 +1,23 @@
+name: Validate Documentation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Check required documentation files
+        run: |
+          echo "Checking required documentation files..."
+
+          test -f docs/ERD.png
+          test -f docs/API-Endpoint-Plan.png
+          test -f docs/sql-script.sql
+
+          echo "All required documentation files are present."
